@@ -1,0 +1,1654 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-downpress/node_modules/downpress/binaries/Binary.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-downpress">npmtest-downpress (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-downpress/node_modules/downpress/binaries/Binary.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">19.25% <small>(41 / 213)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">4.88% <small>(2 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">18.52% <small>(5 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">19.8% <small>(40 / 202)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-downpress/node_modules/downpress/binaries/</a> » Binary.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//#!/usr/bin/env node
+&nbsp;
+&nbsp;
+    "use strict";
+&nbsp;
+&nbsp;
+	/**
+	 *  This is constructed always when user types `downpress` to the terminal
+	 */
+    var Downpress = function(){
+&nbsp;
+		var that = this;
+&nbsp;
+	    // inherit "this" from the class boilerplate (underscore, events..)
+        require("../library/_Boilerplate").call(this);
+&nbsp;
+	    // if is not a valid package, break software
+        this.packageJsonParsing();
+&nbsp;
+		// after package.json is parsed successfully
+		this.on("package-parsed", <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">			that.parseSecondConsoleArgument();</span>
+		});
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+    require("util").inherits(Downpress, require("../library/_Boilerplate"));
+&nbsp;
+&nbsp;
+	/**
+	 *  Parsing second argument typed to console (like `downpress run`)
+	 */
+	Downpress.prototype.parseSecondConsoleArgument = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+		// user types in the console also a second parameter
+<span class="cstat-no" title="statement not covered">		var consoleArgument = process.argv[2];</span>
+<span class="cstat-no" title="statement not covered">		switch (consoleArgument) {</span>
+&nbsp;
+			case "report" :
+<span class="cstat-no" title="statement not covered">				this.initReport(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+&nbsp;
+			case "help" :
+<span class="cstat-no" title="statement not covered">				this.initHelp(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+&nbsp;
+			case "run" :
+<span class="cstat-no" title="statement not covered">				this.initRun(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+&nbsp;
+			case "init" :
+<span class="cstat-no" title="statement not covered">				this.initInit(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+&nbsp;
+			default :
+<span class="cstat-no" title="statement not covered">				this.initWithoutArgument(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+&nbsp;
+		}
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+	/**
+	 *  Attach on website this, user can send also the personal data about his computer and OS and Node
+	 */
+    Downpress.prototype.initReport = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log("");</span>
+<span class="cstat-no" title="statement not covered">        this.log("report a bug?");</span>
+<span class="cstat-no" title="statement not covered">        this.log("  1: browse website github.com/downpress/package/issues");</span>
+<span class="cstat-no" title="statement not covered">        this.log("  2: copy below infos about your computer and go ahead!");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log("");</span>
+<span class="cstat-no" title="statement not covered">        this.log("versions:");</span>
+<span class="cstat-no" title="statement not covered">        this.log("  node: " + process.versions.node);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  http_parser: " + process.versions.http_parser);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  v8: " + process.versions.v8);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  ares: " + process.versions.ares);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  uv: " + process.versions.uv);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  zlib: " + process.versions.zlib);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  modules: " + process.versions.modules);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  openssl: " + process.versions.openssl);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log("");</span>
+<span class="cstat-no" title="statement not covered">        this.log("details:");</span>
+<span class="cstat-no" title="statement not covered">        this.log("  arch: " + process.arch);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  platform: " + process.platform);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  argv: " + process.argv);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  env.PWD: " + process.env.PWD);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  env.OLDPWD: " + process.env.OLDPWD);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  env._: " + process.env._);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  pid: " + process.pid);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  features.debug: " + process.features.debug);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  features.ipv6: " + process.features.ipv6);</span>
+<span class="cstat-no" title="statement not covered">        this.log("  version openssl: " + process.versions.openssl);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log("");</span>
+<span class="cstat-no" title="statement not covered">	    process.kill();</span>
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  When user type `downpress help`, TODO should be implemented in next version for every command
+	 */
+    Downpress.prototype.initHelp = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        this.log("help is gonna be implemented in version 0.3, sorry", true);</span>
+<span class="cstat-no" title="statement not covered">	    process.kill();</span>
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  When user type `downpress run` and package.json does exist in root of project
+	 */
+    Downpress.prototype.initRun = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    var port = global.downpress.config["localhost-port"];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log();</span>
+<span class="cstat-no" title="statement not covered">        this.log("browse http://localhost:" + port + " for a build preview");</span>
+<span class="cstat-no" title="statement not covered">        this.log("watching "+process.env.PWD);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        this.createTemplatesFolder();</span>
+<span class="cstat-no" title="statement not covered">        this.watchLocalhost();</span>
+<span class="cstat-no" title="statement not covered">        this.watchDirectories();</span>
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  When user type `downpress init` and wants to create a new project boilerplate
+	 */
+    Downpress.prototype.initInit = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var that = this;</span>
+<span class="cstat-no" title="statement not covered">        var i = 0;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">        function handleFolderErrors(err){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if (err) {</span>
+<span class="cstat-no" title="statement not covered">                that.log("ERROR: folder "+ err.path + "already does exist!", true);</span>
+<span class="cstat-no" title="statement not covered">                process.kill();</span>
+            } else <span class="cstat-no" title="statement not covered">if (++i===9) {</span>
+<span class="cstat-no" title="statement not covered">	            that.whenAllInitFoldersAreCreated();</span>
+            }
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered">        this.fs.mkdir("./articles", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./%templates", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./%build", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./page", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./statics", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./articles/1st", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./articles/2nd", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./articles/3rd", handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.mkdir("./articles/4th", handleFolderErrors);</span>
+&nbsp;
+	    // TODO
+	    // maybe this can be created without files, just with some inteligent parameter
+	    // something like ~ i want create this file also if the root directory doesn't exist
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  On command `init` create also files, after directories are already created
+	 */
+    Downpress.prototype.whenAllInitFoldersAreCreated = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var i = 0;</span>
+<span class="cstat-no" title="statement not covered">	    var that = this;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">        function handleFolderErrors(err){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if (err) {</span>
+<span class="cstat-no" title="statement not covered">                that.log("file already exists: "+ err.path, true);</span>
+<span class="cstat-no" title="statement not covered">                process.kill();</span>
+            } else <span class="cstat-no" title="statement not covered">if (++i===13) {</span>
+<span class="cstat-no" title="statement not covered">	            that.log("success —- all files created successfully");</span>
+<span class="cstat-no" title="statement not covered">                that.log("type `downpress run` and open browser");</span>
+            }
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var msg = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var msg1 = "&lt;!-- in this file use classic html --&gt;\n{{ local._content }}";</span>
+<span class="cstat-no" title="statement not covered">        var msg2 = "--\ntemplate : article\n---\n\n**hello, i am content of articles!**";</span>
+<span class="cstat-no" title="statement not covered">        var msg7 = "--\ntemplate : index\n---\n\n**hello, i am in /index.md!**";</span>
+<span class="cstat-no" title="statement not covered">        var msg6 = "--\ntemplate : page\n---\n\n**hello, i am in /page/index.md**";</span>
+<span class="cstat-no" title="statement not covered">        var msg4 = "if you will not use '---' meta tags in MD,\nfile is copied only and not parsed";</span>
+<span class="cstat-no" title="statement not covered">        var msg3 = "html { background: #ccc }";</span>
+<span class="cstat-no" title="statement not covered">        var msg8 = "console.log('hello');";</span>
+<span class="cstat-no" title="statement not covered">        var msg5 = "all content in this folder will be removed!! and replaced with build";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        msg.index = "\n\t{{ local._content }}&lt;br&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\n\t&lt;script src=\"/statics/client.js\"&gt;&lt;/script&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\n\t&lt;link href=\"statics/stylesheet.css\" rel=\"stylesheet\" /&gt;&lt;br&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\t&lt;a href=\"/articles/1st/\"&gt;1st blog&lt;/a&gt;&lt;br/&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\t&lt;a href=\"/articles/2nd/\"&gt;2nd blog&lt;/a&gt;&lt;br/&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\t&lt;a href=\"/articles/3rd/\"&gt;3rd blog&lt;/a&gt;&lt;br/&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\t&lt;a href=\"/articles/4th/\"&gt;4th blog&lt;/a&gt;&lt;br/&gt;\n";</span>
+<span class="cstat-no" title="statement not covered">        msg.index += "\t&lt;a href=\"/page/\"&gt;page&lt;/a&gt;&lt;br/&gt;\n";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./readme.md", msg4, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./%templates/index.html", msg.index, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./%templates/page.html", msg1, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./%templates/article.html", msg1, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./%build/build-folder.md", msg5, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./page/index.md", msg6, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./articles/1st/index.md", msg2, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./articles/2nd/index.md", msg2, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./articles/3rd/index.md", msg2, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./articles/4th/index.md", msg2, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./statics/stylesheet.css", msg3, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">	    this.fs.appendFile("./statics/client.js", msg8, handleFolderErrors);</span>
+<span class="cstat-no" title="statement not covered">        this.fs.appendFile("./index.md", msg7, handleFolderErrors);</span>
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  When Downpress is run without a valid argument (second - `downpress something`)
+	 */
+    Downpress.prototype.initWithoutArgument = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    this.log("ERROR -- use only subcommands: `run`, `init` or `report`", true);</span>
+<span class="cstat-no" title="statement not covered">	    this.log("downpress killed", true);</span>
+<span class="cstat-no" title="statement not covered">	    process.kill();</span>
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  Check if %Templates folder does exist, if no - create a new one, if yes - nothing
+	 */
+    Downpress.prototype.createTemplatesFolder = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+	    // TODO mkdir is synch operation because this is not happening everytime
+	    // the relevant question ~ how to solve callbacks if are optional?
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    var FOLDER = "./" + global.downpress.config["dir-templates"];</span>
+<span class="cstat-no" title="statement not covered">	    var that = this;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">	    function doesntExists(){</span>
+<span class="cstat-no" title="statement not covered">		    that.fs.mkdirSync(FOLDER);</span>
+<span class="cstat-no" title="statement not covered">		    that.log(FOLDER + " folder created to the root of a website", true);</span>
+	    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    this.fs.exists(FOLDER, <span class="fstat-no" title="function not covered">function(exists){</span></span>
+<span class="cstat-no" title="statement not covered">		    if (!exists) { <span class="cstat-no" title="statement not covered">doesntExists(); </span>}</span>
+	    });
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  Create the server on localhost with an optional port (default 8088)
+	 */
+    Downpress.prototype.watchLocalhost = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var connect = require("connect");</span>
+<span class="cstat-no" title="statement not covered">	    var buildFolder = "./" + global.downpress.config["dir-build"];</span>
+<span class="cstat-no" title="statement not covered">        var options = connect().use(connect.static(buildFolder));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    var server = require("http").createServer(options);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    server.listen(8088);</span>
+<span class="cstat-no" title="statement not covered">	    server.on("error", (<span class="fstat-no" title="function not covered">function(error){</span></span>
+<span class="cstat-no" title="statement not covered">		    this.portAlreadyExists(error);</span>
+	    }).bind(this));
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  If port is already listening on something, report error to console
+	 */
+	Downpress.prototype.portAlreadyExists = <span class="fstat-no" title="function not covered">function(error){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">		var isAlreadyUsed = ("EADDRINUSE"===error.code);</span>
+<span class="cstat-no" title="statement not covered">		var usedPort = global.downpress.config["localhost-port"];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">		if (isAlreadyUsed) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">			this.log("ERROR: port "+usedPort+" is already used by other process (maybe with downpress)", true);</span>
+<span class="cstat-no" title="statement not covered">			this.log("maybe your have downpress already run somewhere (??)", true);</span>
+<span class="cstat-no" title="statement not covered">			this.log("if you want to use more downpress ins. in one moment, change port in package.json", true);</span>
+<span class="cstat-no" title="statement not covered">			console.log();</span>
+&nbsp;
+		} else {
+&nbsp;
+<span class="cstat-no" title="statement not covered">			this.log("TODO: this is unknown error of server creating", true);</span>
+<span class="cstat-no" title="statement not covered">			this.log("please report this, so we can handle this error", true);</span>
+<span class="cstat-no" title="statement not covered">			console.log(error);</span>
+&nbsp;
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered">		process.kill();</span>
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+	/**
+	 *  Chokidar options for watcher of folders, what should be watched, in which interval
+	 */
+    Downpress.prototype.chokidarOptions = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    return {</span>
+		    // ignored : global.downpress.config["watch-ignored"],
+		    // persistent : true,
+		    // interval : global.downpress.config["watch-interval"],
+		    // binaryInterval : global.downpress.config["watch-interval-binaries"],
+		    // ignoreInitial : true
+	    };
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  Choikar watches all folders with settings and on change runs Plugins.js
+	 */
+    Downpress.prototype.watchDirectories = <span class="fstat-no" title="function not covered">function(){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">	    var options = this.chokidarOptions();</span>
+<span class="cstat-no" title="statement not covered">	    var that = this;</span>
+<span class="cstat-no" title="statement not covered">        global.downpress.isGenerating = false;</span>
+&nbsp;
+        // initial build without any inital changes, just needs to be build
+<span class="cstat-no" title="statement not covered">        global.downpress.isInitial = true;</span>
+<span class="cstat-no" title="statement not covered">        require("./Plugins")();</span>
+&nbsp;
+        // watch every change in project
+<span class="cstat-no" title="statement not covered">        require("gaze")("**/*", <span class="fstat-no" title="function not covered">function(err) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if (err) <span class="cstat-no" title="statement not covered">throw err;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            this.on("all", <span class="fstat-no" title="function not covered">function(event, filepath) {</span></span>
+<span class="cstat-no" title="statement not covered">                that.onWatchingChangeChoikar(event, filepath);</span>
+            });
+&nbsp;
+        });
+&nbsp;
+&nbsp;
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  Run on every change of Choikar in all directories
+	 */
+	Downpress.prototype.onWatchingChangeChoikar = <span class="fstat-no" title="function not covered">function(event, path){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">		var that = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var buildDir = "/" + global.downpress.config["dir-build"] + "/";</span>
+<span class="cstat-no" title="statement not covered">        if (path.indexOf(buildDir)!==-1) {&nbsp;<span class="cstat-no" title="statement not covered">return; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">		global.downpress.lastChanged = { event : event, path : path };</span>
+&nbsp;
+        // what if next change is faster than folder is regenerated?
+<span class="cstat-no" title="statement not covered">		if (!global.downpress.isGenerating) {</span>
+<span class="cstat-no" title="statement not covered">			that.log("`"+event+"` in `"+path +"`");</span>
+<span class="cstat-no" title="statement not covered">			require("./Plugins")();</span>
+		}
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+	/**
+	 *  Read package.json file from filesystem, this file is mandatory
+	 */
+    Downpress.prototype.packageJsonParsing = function(){
+&nbsp;
+	    // package.json is a convention used in nodejs/grunt prjts
+	    var FILE_NAME = "./package.json";
+	    var that = this;
+&nbsp;
+	    // read package from filesystem, check if is there
+	    this.fs.readFile(FILE_NAME, function(error, data){
+            <span class="missing-if-branch" title="if path not taken">I</span>if (error) { <span class="cstat-no" title="statement not covered">that.errorOnPackageJsonRead(error); </span>}
+            // TODO unvalid json error catch
+            var parsedJsonFile = JSON.parse(data);
+            that.successOnPackageJsonRead(parsedJsonFile);
+	    });
+&nbsp;
+	    // this is global object valid everywhere in application
+	    global.downpress = {};
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+	/**
+	 *  When file package.json does exist
+	 */
+	Downpress.prototype.successOnPackageJsonRead = function(data){
+&nbsp;
+		// if package.json file doens't contain downpress object, throw error
+		var isDownpressPackage = data.downpress;
+		<span class="missing-if-branch" title="else path not taken">E</span>if (!isDownpressPackage) { this.errorOnMissingDownpressInPackage(); }
+&nbsp;
+		// we can access to whole package.json file via package object
+<span class="cstat-no" title="statement not covered">		global.downpress.package = data;</span>
+&nbsp;
+		// or we can access to downpress object directly and edit it)
+<span class="cstat-no" title="statement not covered">		global.downpress.config = data.downpress;</span>
+&nbsp;
+		// if port is not defined, set default to 8088
+<span class="cstat-no" title="statement not covered">		global.downpress.config["localhost-port"] = data.downpress["localhost-port"] || "8088";</span>
+<span class="cstat-no" title="statement not covered">		global.downpress.config["localhost-port"] += ""; </span>// sanitate in case of a number
+&nbsp;
+		// check existing name of templates folder
+<span class="cstat-no" title="statement not covered">		global.downpress.config["dir-templates"] = data.downpress["dir-templates"] || "%templates";</span>
+&nbsp;
+		// check existing name of build folder
+<span class="cstat-no" title="statement not covered">		global.downpress.config["dir-build"] = data.downpress["dir-build"] || "%build";</span>
+&nbsp;
+		// interval of text files polling
+<span class="cstat-no" title="statement not covered">		global.downpress.config["watch-interval"] = data.downpress["watch-interval"] || "50";</span>
+<span class="cstat-no" title="statement not covered">		global.downpress.config["watch-interval"] += "";</span>
+&nbsp;
+		// interval of text files polling
+<span class="cstat-no" title="statement not covered">		global.downpress.config["watch-interval-binaries"] = data.downpress["watch-interval-binaries"] || "300";</span>
+<span class="cstat-no" title="statement not covered">		global.downpress.config["watch-interval-binaries"] += "";</span>
+&nbsp;
+		// delimiter of header in markdown files for meta data
+<span class="cstat-no" title="statement not covered">		global.downpress.config["markdown-delimiter"] = data.downpress["markdown-delimiter"] || "---";</span>
+&nbsp;
+		// interval of text files polling
+		// TODO, this needs to be implemented, as regexp or function or array
+<span class="cstat-no" title="statement not covered">		global.downpress.config["watch-ignored"] = /%build/;</span>
+&nbsp;
+		// package.json exists and is parsed successfully
+<span class="cstat-no" title="statement not covered">		this.emit("package-parsed");</span>
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+	/**
+	 *  When file package.json doesn't exists in root of project (when DP is run)
+	 */
+	Downpress.prototype.errorOnPackageJsonRead = <span class="fstat-no" title="function not covered">function(error){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">		var isNotExists = error.code = "ENOENT";</span>
+<span class="cstat-no" title="statement not covered">		if (!isNotExists) { <span class="cstat-no" title="statement not covered">return; </span>}</span>
+&nbsp;
+		// log error message
+<span class="cstat-no" title="statement not covered">		this.log("ERROR", true);</span>
+<span class="cstat-no" title="statement not covered">		this.log("  reason: file package.json doesn't exists in project", true);</span>
+<span class="cstat-no" title="statement not covered">		this.log("  solution: create file package.json in your root", true);</span>
+&nbsp;
+		// kill process and finish the package run
+<span class="cstat-no" title="statement not covered">		process.kill();</span>
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+	/**
+	 *  When we have a package.json file, but inside is missing required "downpress" object
+	 */
+	Downpress.prototype.errorOnMissingDownpressInPackage = function(){
+&nbsp;
+		// log error message
+		this.log("ERROR", true);
+		this.log("  reason: file package.json has no object downpress", true);
+		this.log("  solution: create in package.json 'downpress : {}' object", true);
+&nbsp;
+		// kill process and finish the package run
+		process.kill();
+&nbsp;
+	};
+&nbsp;
+&nbsp;
+    // run application
+&nbsp;
+    new Downpress();
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sat Apr 22 2017 15:04:21 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
